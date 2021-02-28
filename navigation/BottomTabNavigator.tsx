@@ -5,9 +5,10 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
+import TabOfLongScreen from '../screens/TabOfLongScreen';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import { BottomTabParamList, TabOfLong, TabOneParamList, TabTwoParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -29,6 +30,13 @@ export default function BottomTabNavigator() {
         name="TabTwo"
         component={TabTwoNavigator}
         options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name =  "TabOfLong"
+        component = {TabOfLongNavigator}
+        options = {{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
       />
@@ -70,4 +78,19 @@ function TabTwoNavigator() {
       />
     </TabTwoStack.Navigator>
   );
+}
+
+const TabThreeStack = createStackNavigator<TabOfLong>();
+
+function TabOfLongNavigator() {
+  return (
+    <TabThreeStack.Navigator>
+      <TabThreeStack.Screen 
+      name = "TabOfLongScreen"
+      component =  {TabOfLongScreen}
+      options={{ headerTitle: 'Tab Three Title' }}
+      />
+        
+    </TabThreeStack.Navigator>
+  )
 }
